@@ -10,14 +10,12 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-nunjucks.configure('views', {
+var env = nunjucks.configure(['views/'], { // set folders with templates
     autoescape: true,
     express: app
 });
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(express.json());
