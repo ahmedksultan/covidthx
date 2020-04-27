@@ -11,6 +11,7 @@ nunjucks.configure("views", {
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
 app.use("/css", express.static(__dirname + "/css"));
+app.use('/public', express.static(__dirname + "/public"));
 
 app.use(function(req, res, next) {
   res.status(404).send("Sorry can't find that!")
