@@ -1,6 +1,14 @@
 var express = require("express");
 var router = express.Router();
+var bcrypt = require("bcryptjs");
+const passport = require('passport');
+const { ensureAuthenticated } = require("../config/auth");
 const Admin = require("../models/Admin");
+
+/* GET admin dashboard. */
+router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
+	res.render("admin_dashboard.html");
+});
 
 /* GET register page. */
 router.get("/register", function (req, res, next) {
@@ -50,7 +58,7 @@ router.post("/register", function (req, res, next) {
                         newAdmin
                             .save()
                             .then((admin) => {
-                                res.redirect("/users/login");
+                                res.redirect("/admins/login");
                             })
                             .catch((err) => console.log(err));
                     })
@@ -58,6 +66,21 @@ router.post("/register", function (req, res, next) {
             }
         });
     }
+});
+
+/* POST login handle. */
+router.post("/login", function (req, res, next) {
+    passport.authenticate("local", {
+        successRedirect: "/admins/dashboard",
+        failureRedirect: "/admins/login",
+		failureFlash: true
+    })(req, res, next);
+});
+
+/* GET logout handle. */
+router.get("/logout", function (req, res, next) {
+    req.logout();
+    res.redirect("/");
 });
 
 module.exports = router;
