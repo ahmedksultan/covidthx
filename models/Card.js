@@ -2,10 +2,12 @@ const mongoose = require("mongoose");
 
 const CardSchema = new mongoose.Schema({
 	name: {
-		type: String
+		type: String,
+		required: true
 	},
 	location: {
-		type: String
+		type: String,
+		required: true
 	},
 	message: {
 		type: String,
