@@ -1,9 +1,14 @@
 require("dotenv").config();
 const express = require("express");
+const bodyParser = require("body-parser");
 const nunjucks = require("nunjucks");
 const app = express();
 const unirest = require("unirest");
 const mongoose = require("mongoose");
+
+// Configure Body-Parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configure Nunjucks
 nunjucks.configure("views", {
@@ -21,6 +26,7 @@ mongoose
 // Routes
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
+app.use("/cards", require("./routes/cards"));
 app.use("/css", express.static(__dirname + "/css"));
 app.use("/public", express.static(__dirname + "/public"));
 app.get("/geo", (req, res) => {

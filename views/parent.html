@@ -45,26 +45,26 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="Input1">Name</label>
-              <input type="text" class="form-control" id="Input1" placeholder="Vishwaa Sofat">
-            </div>
-            <div class="form-group">
-              <label for="formGroupExampleInput2">Location</label>
-              <input type="text" class="form-control" id="Input2" placeholder="New York, NY">
-            </div>
-            <div class="form-group">
-              <label for="Input3">Message</label>
-              <textarea rows="5" class="form-control" id="Input3" placeholder="I am thankful for the first-line workers who protected me and my loved ones in this dangerous time."></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        <form action="/cards/create" method="POST">
+          <div class="modal-body">
+              <div class="form-group">
+                <label for="Input1">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Vishwaa Sofat" required>
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Location</label>
+                <input type="text" class="form-control" id="location" name="location" placeholder="New York, NY" required>
+              </div>
+              <div class="form-group">
+                <label for="Input3">Message</label>
+                <textarea rows="5" class="form-control" id="message" name="message" placeholder="I am thankful for the first-line workers who protected me and my loved ones in this dangerous time." required></textarea>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Create Post</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
