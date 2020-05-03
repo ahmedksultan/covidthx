@@ -49,6 +49,10 @@ app.use("/admins", require("./routes/admins"));
 
 app.use("/css", express.static(__dirname + "/css"));
 app.use("/public", express.static(__dirname + "/public"));
+
+/* geolocating?
+http://api.ipstack.com/67.254.210.52?access_key=16dc126a10b38e74d56348201da3acf9&format=1 < ipstack.com API link, don't know how to integrate yet
+
 app.get("/geo", (req, res) => {
     const apiCall = unirest(
         "GET",
@@ -65,6 +69,7 @@ app.get("/geo", (req, res) => {
         res.send(result.body);
     });
 });
+*/
 
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!");
