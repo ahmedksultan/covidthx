@@ -5,6 +5,8 @@ const nunjucks = require("nunjucks");
 const app = express();
 const unirest = require("unirest");
 const mongoose = require("mongoose");
+const session = require('express-session');
+const passport = require('passport');
 
 // Configure Body-Parser
 app.use(bodyParser.json());
@@ -16,12 +18,28 @@ nunjucks.configure("views", {
     express: app,
 });
 
+// Passport Config
+require('./config/passport')(passport);
+
 // Configure Mongoose
 const db = process.env.MONGO_URI;
 mongoose
     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("MongoDB Connected..."))
     .catch((err) => console.log(err));
+
+// Express Session
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use("/", require("./routes/index"));
