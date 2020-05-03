@@ -5,8 +5,8 @@ const nunjucks = require("nunjucks");
 const app = express();
 const unirest = require("unirest");
 const mongoose = require("mongoose");
-const session = require('express-session');
-const passport = require('passport');
+const session = require("express-session");
+const passport = require("passport");
 
 // Configure Body-Parser
 app.use(bodyParser.json());
@@ -19,7 +19,7 @@ nunjucks.configure("views", {
 });
 
 // Passport Config
-require('./config/passport')(passport);
+require("./config/passport")(passport);
 
 // Configure Mongoose
 const db = process.env.MONGO_URI;
@@ -30,11 +30,11 @@ mongoose
 
 // Express Session
 app.use(
-  session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-  })
+    session({
+        secret: "secret",
+        resave: true,
+        saveUninitialized: true,
+    })
 );
 
 // Passport middleware
@@ -45,6 +45,8 @@ app.use(passport.session());
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
 app.use("/cards", require("./routes/cards"));
+app.use("/admins", require("./routes/admins"));
+
 app.use("/css", express.static(__dirname + "/css"));
 app.use("/public", express.static(__dirname + "/public"));
 app.get("/geo", (req, res) => {
