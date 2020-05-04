@@ -7,6 +7,7 @@ const unirest = require("unirest");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 // Configure Body-Parser
 app.use(bodyParser.json());
@@ -50,26 +51,24 @@ app.use("/admins", require("./routes/admins"));
 app.use("/css", express.static(__dirname + "/css"));
 app.use("/public", express.static(__dirname + "/public"));
 
-/* geolocating?
-http://api.ipstack.com/67.254.210.52?access_key=16dc126a10b38e74d56348201da3acf9&format=1 < ipstack.com API link, don't know how to integrate yet
-
 app.get("/geo", (req, res) => {
-    const apiCall = unirest(
-        "GET",
-        "https://ip-geolocation-ipwhois-io.p.rapidapi.com/json/"
-    );
-    apiCall.headers({
-        "x-rapidapi-host": "ip-geolocation-ipwhois-io.p.rapidapi.com",
-        "x-rapidapi-key": "7b44ded841msha82bd7cd066097fp1c9fdajsna23bb161b783",
-    });
+  var json = 'http://ip-api.com/json/?fields=status,city';
+  const xhr = new XMLHttpRequest();
 
-    apiCall.end(function (result) {
-        if (res.error) throw new Error(result.error);
-        console.log(result.body);
-        res.send(result.body);
-    });
+  xhr.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+		var response = JSON.parse(this.responseText);
+		if(response.status !== 'success') {
+			console.log('query failed: ' + response.message);
+			return
+		}
+    console.log(response.city);
+    res.send(response.city);
+  }}
+
+    xhr.open('GET', json, true);
+    xhr.send();
 });
-*/
 
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!");
