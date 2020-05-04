@@ -93,73 +93,15 @@ function updateLocation() {
 
 {% block insert %}
      <br>
-     <div class="row">
-          <div class="container col-md-2 bg-danger border border-danger text-primary" style="padding: 1em; border-radius: 0.5em;">
-               <!-- example header -->
-               <p><small>Ahmed Sultan, <i>New York</i></small></p>
-               <!-- example content -->
-               <p>This is a post on the Wall of Thanks. Big thanks! Wow, amazing. This is great.</p>
-               <!-- example rating? -->
-               <p><i class="far fa-heart"></i> 100</p>
-          </div>
-          <div class="container col-md-3 bg-light border border-danger text-danger" style="padding: 1em; border-radius: 0.5em;">
-               <!-- example header -->
-               <p><small>Vishwaa Sofat, <i>Shanghai</i></small></p>
-               <!-- example content -->
-               <p>This is another post on the Wall of Thanks. Big thanks! Wow, amazing. This is great. My name is Vishwaa. Did you know that? I knew that. Why am I in Shanghai? Thank you, thank you. This has been me typing. Yes.</p>
-               <!-- example rating? -->
-               <span class="align-bottom"><i class="far fa-heart"></i> 51</span>
-          </div>
-          <div class="container col-md-3 bg-danger border border-danger text-primary" style="padding: 1em; border-radius: 0.5em;">
-               <!-- example header -->
-               <p><small>Kazi Jamal, <i>Birmingham</i></small></p>
-               <!-- example content -->
-               <p>This is a third post on the Wall of Thanks. That is all.</p>
-               <!-- example rating? -->
-               <span class="align-bottom"><i class="far fa-heart"></i> 999</span>
-          </div>
-          <div class="container col-md-3 bg-danger border border-danger" style="padding: 1em; border-radius: 0.5em;">
-               <br>
-               <br>
-               <br>
-               <br>
-               <br>
-               <br>
+     {% for post in posts %}
+     <div class="row"> 
+          <div class="container col w-100 bg-light border border-danger text-danger rounded" style="padding: 1em;">
+               <!-- header -->
+               <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
+               <!-- content -->
+               <p>{{ post.message }}</p>
           </div>
      </div>
      <br>
-     <div class="row">
-          <div class="container col-md-4 bg-danger border border-danger" style="padding: 1em; border-radius: 0.5em;">
-               <br>
-               <br>
-               <br>
-               <br>
-               <br>
-               <br>
-          </div>
-          <div class="container col-md-2 bg-light border border-danger" style="padding: 1em; border-radius: 0.5em;">
-               <br>
-               <br>
-               <br>
-               <br>
-               <br>
-               <br>
-          </div>
-          <div class="container col-md-3 bg-danger border border-danger" style="padding: 1em; border-radius: 0.5em;">
-               <br>
-               <br>
-               <br>
-               <br>
-               <br>
-               <br>
-          </div>
-          <div class="container col-md-2 bg-light border border-danger" style="padding: 1em; border-radius: 0.5em;">
-               <br>
-               <br>
-               <br>
-               <br>
-               <br>
-               <br>
-          </div>
-     </div>
+     {% endfor %}
 {% endblock %}
