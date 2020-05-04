@@ -2,9 +2,11 @@ var express = require("express");
 var router = express.Router();
 const Card = require("../models/Card");
 
+
 /* POST create a new card. */
 router.post("/create", function (req, res, next) {
     const { name, location, message } = req.body;
+
     var newCard = new Card({
         name: name,
         location: location,
