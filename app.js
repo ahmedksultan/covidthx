@@ -51,7 +51,7 @@ app.use("/admins", require("./routes/admins"));
 app.use("/css", express.static(__dirname + "/css"));
 app.use("/public", express.static(__dirname + "/public"));
 
-app.get("/geo", (req, res) => {
+function updateLocation() {
   var json = 'http://ip-api.com/json/?fields=status,city';
   const xhr = new XMLHttpRequest();
 
@@ -63,12 +63,12 @@ app.get("/geo", (req, res) => {
 			return
 		}
     console.log(response.city);
-    res.send(response.city);
+    document.getElementById("location").value = response.city;
   }}
 
     xhr.open('GET', json, true);
     xhr.send();
-});
+};
 
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!");
