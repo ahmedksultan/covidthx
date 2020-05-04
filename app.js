@@ -51,25 +51,6 @@ app.use("/admins", require("./routes/admins"));
 app.use("/css", express.static(__dirname + "/css"));
 app.use("/public", express.static(__dirname + "/public"));
 
-function updateLocation() {
-  var json = 'http://ip-api.com/json/?fields=status,city';
-  const xhr = new XMLHttpRequest();
-
-  xhr.onreadystatechange = function() {
-	if (this.readyState == 4 && this.status == 200) {
-		var response = JSON.parse(this.responseText);
-		if(response.status !== 'success') {
-			console.log('query failed: ' + response.message);
-			return
-		}
-    console.log(response.city);
-    document.getElementById("location").value = response.city;
-  }}
-
-    xhr.open('GET', json, true);
-    xhr.send();
-};
-
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!");
 });
