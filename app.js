@@ -48,6 +48,7 @@ app.use("/users", require("./routes/users"));
 app.use("/cards", require("./routes/cards"));
 app.use("/admins", require("./routes/admins"));
 app.use("/css", express.static(__dirname + "/css"));
+app.use("/js", express.static(__dirname + "/js"));
 app.use("/public", express.static(__dirname + "/public"));
 
 app.use(function (req, res, next) {

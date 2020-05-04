@@ -1,31 +1,5 @@
 {% extends "parent.html" %}
 
-{% block script %}
-<script>
-
-function updateLocation() {
-  var json = 'http://ip-api.com/json/?fields=status,city,region';
-  const xhr = new XMLHttpRequest();
-
-  xhr.onreadystatechange = function() {
-	if (this.readyState == 4 && this.status == 200) {
-		var response = JSON.parse(this.responseText);
-		if(response.status !== 'success') {
-			console.log('query failed: ' + response.message);
-			return
-		}
-    console.log(response.city);
-    document.getElementById("location").value = response.city + ", " + response.region;
-  }}
-
-    xhr.open('GET', json, true);
-    xhr.send();
-};
-
-</script>
-
-{% endblock %}
-
 {% block navbar %}
 <nav class="navbar navbar-transparent">
      <!-- logo -->
@@ -52,7 +26,7 @@ function updateLocation() {
                          <span aria-hidden="true">&times;</span>
                     </button>
                </div>
-               <form action="/cards/create" method="POST">
+               <form name="createCardForm" id="createCardForm" action="/cards/create" method="POST" onSubmit="return checkProfanity()">
                     <div class="modal-body">
                          <div class="form-group">
                               <label for="Input1">Name</label>
@@ -104,4 +78,10 @@ function updateLocation() {
      </div>
      <br>
      {% endfor %}
+{% endblock %}
+
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script src="js/index.js"></script>
 {% endblock %}
