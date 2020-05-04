@@ -8,7 +8,6 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-const axios = require('axios').default;
 
 // Configure Body-Parser
 app.use(bodyParser.json());
@@ -51,24 +50,11 @@ app.use("/admins", require("./routes/admins"));
 app.use("/css", express.static(__dirname + "/css"));
 app.use("/public", express.static(__dirname + "/public"));
 
-app.get('/msg', (req, res) => {
-  result = axios({
-  method: 'get',
-  url: 'https://www.purgomalum.com/service/containsprofanity?',
-  data: {
-    text: 'thisisamessage',
-  }
-});
-  console.log(result.body);
-   res.send(result.body);
- });
-
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!");
 });
 
-app.get
-
+app.get;
 
 const PORT = process.env.PORT || 5000;
 
