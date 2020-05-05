@@ -4,10 +4,14 @@ var bcrypt = require("bcryptjs");
 const passport = require('passport');
 const { ensureAuthenticated } = require("../config/auth");
 const Admin = require("../models/Admin");
+const Card = require("../models/Card");
 
 /* GET admin dashboard. */
 router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
-	res.render("admin_dashboard.html");
+    Card.find({}, (err, cards) => {
+        array = cards;
+        res.render("admin_dashboard.html", {posts: array});
+    });
 });
 
 /* GET register page. */

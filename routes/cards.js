@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 const Card = require("../models/Card");
-const axios = require("axios").default;
 
 /* POST create a new card. */
 router.post("/create", function (req, res, next) {
@@ -20,6 +19,19 @@ router.post("/create", function (req, res, next) {
         .catch((err) => {
             console.log(err);
             res.status(400).send("Unable to create card");
+        });
+});
+
+/* POST delete a card. */
+router.post("/delete", function (req, res, next) {
+    const id = req.body.id;
+
+    Card.deleteOne({ _id: id })
+        .then(() => {
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            res.json({ err: err });
         });
 });
 
