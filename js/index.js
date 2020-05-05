@@ -20,9 +20,12 @@ function updateLocation() {
 }
 
 function checkProfanity() {
-	event.preventDefault();
+    event.preventDefault();
     console.log(document.createCardForm.message.value);
-    var check = document.createCardForm.message.value + document.createCardForm.location.value + document.createCardForm.name.value;
+    var check =
+        document.createCardForm.message.value +
+        document.createCardForm.location.value +
+        document.createCardForm.name.value;
     axios
         .get(
             `https://www.purgomalum.com/service/containsprofanity?text=${check}`
@@ -32,8 +35,18 @@ function checkProfanity() {
                 alert("Your message cannot contain profanity");
                 return false;
             } else {
-				document.createCardForm.submit();
-				return true;
-			}
+                document.createCardForm.submit();
+                return true;
+            }
+        });
+}
+
+function reportCard(id) {
+    axios
+        .post("/cards/report", {
+            id: id,
+        })
+        .then(function (res) {
+            window.location.reload();
         });
 }

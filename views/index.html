@@ -75,6 +75,8 @@
                <p><small>{{ post.timestamp }}</small></p>
                <!-- content -->
                <p>{{ post.message }}</p>
+               <button class="btn btn-labeled btn-danger" onclick="reportCard('{{ post._id }}')">
+                <span class="btn-label"><i class="fas fa-flag" style="margin-right: 0.5rem;"></i></i>Report Post</span>
           </div>
      </div>
      <br>
