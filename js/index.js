@@ -22,9 +22,10 @@ function updateLocation() {
 function checkProfanity() {
 	event.preventDefault();
     console.log(document.createCardForm.message.value);
+    var check = document.createCardForm.message.value + document.createCardForm.location.value + document.createCardForm.name.value;
     axios
         .get(
-            `https://www.purgomalum.com/service/containsprofanity?text=${document.createCardForm.message.value}`
+            `https://www.purgomalum.com/service/containsprofanity?text=${check}`
         )
         .then(function (response) {
             if (response.data == true) {
