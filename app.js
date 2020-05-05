@@ -44,6 +44,7 @@ app.use(passport.session());
 
 // Routes
 app.use("/", require("./routes/index"));
+app.use("/about-us", require("./routes/about-us"));
 app.use("/users", require("./routes/users"));
 app.use("/cards", require("./routes/cards"));
 app.use("/admins", require("./routes/admins"));
