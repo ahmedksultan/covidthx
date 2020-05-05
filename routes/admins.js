@@ -1,25 +1,29 @@
 var express = require("express");
 var router = express.Router();
 var bcrypt = require("bcryptjs");
-const passport = require('passport');
+const passport = require("passport");
 const { ensureAuthenticated } = require("../config/auth");
 const Admin = require("../models/Admin");
 const Card = require("../models/Card");
 
 /* GET admin dashboard. */
 router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
-    Card.find({}, (err, cards) => {
-        array = cards;
-        res.render("admin_dashboard.html", {posts: array});
-    });
+    Card.find({})
+        .sort({ timestamp: "desc" })
+        .exec((err, cards) => {
+            array = cards;
+            res.render("admin_dashboard.html", { posts: array });
+        });
 });
 
 /* GET admin reported. */
 router.get("/reported", ensureAuthenticated, (req, res, next) => {
-    Card.find({reported: true}, (err, cards) => {
-        array = cards;
-        res.render("admin_reported.html", {posts: array});
-    });
+    Card.find({ reported: true })
+        .sort({ timestamp: "desc" })
+        .exec((err, cards) => {
+            array = cards;
+            res.render("admin_reported.html", { posts: array });
+        });
 });
 
 /* GET register page. */
@@ -85,7 +89,7 @@ router.post("/login", function (req, res, next) {
     passport.authenticate("local", {
         successRedirect: "/admins/dashboard",
         failureRedirect: "/admins/login",
-		failureFlash: true
+        failureFlash: true,
     })(req, res, next);
 });
 
