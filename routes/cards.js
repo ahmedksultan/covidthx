@@ -35,4 +35,14 @@ router.post("/delete", function (req, res, next) {
         });
 });
 
+/* POST report a card. */
+router.post("/report", function (req, res, next) {
+    const id = req.body.id;
+
+    Card.findOne({_id: id}, function (err, doc) {
+        doc.reported = true;
+        doc.save();
+    })
+})
+
 module.exports = router;
