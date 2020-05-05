@@ -17,9 +17,10 @@ const CardSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	tags: [{
-		type: String
-	}]
+	reported: {
+		type: Boolean,
+		default: false
+	}
 })
 
 const Card = mongoose.model("Card", CardSchema);
