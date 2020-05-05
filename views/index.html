@@ -21,7 +21,7 @@
      <div class="modal-dialog" role="document">
           <div class="modal-content">
                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Post of Thanks</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add to the Wall!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                          <span aria-hidden="true">&times;</span>
                     </button>
@@ -30,7 +30,7 @@
                     <div class="modal-body">
                          <div class="form-group">
                               <label for="Input1">Name</label>
-                              <input type="text" class="form-control" id="name" name="name" placeholder="Vishwaa Sofat"
+                              <input type="text" class="form-control" id="name" name="name" placeholder="Put your name here."
                                    required>
                          </div>
                          <div class="form-group">
@@ -38,7 +38,7 @@
                               <div class="row">
                                    <div class="col-10">
                                         <input type="text" class="form-control" id="location" name="location"
-                                   placeholder="New York, NY" required>
+                                   placeholder="Type your location, or auto-fill with the button!" required>
                                    </div>
                                    <div class="col-2 ">
                                         <button type="button" class="btn btn-labeled btn-danger" onclick="updateLocation();">
@@ -50,8 +50,8 @@
                          </div>
                          <div class="form-group">
                               <label for="Input3">Message</label>
-                              <textarea rows="5" class="form-control" id="message" name="message"
-                                   placeholder="I am thankful for the first-line workers who protected me and my loved ones in this dangerous time."
+                              <textarea maxlength="280" rows="5" class="form-control" id="message" name="message"
+                                   placeholder="Write your message here (max 280 characters)."
                                    required></textarea>
                          </div>
                     </div>
@@ -67,20 +67,46 @@
 
 {% block insert %}
      <br>
+     <div class="row">
      {% for post in posts %}
-     <div class="row"> 
-          <div class="container col w-100 bg-light border border-danger text-danger rounded" style="padding: 1em;">
+          <div class="col {{ ['bg-ibizasunset', 'bg-sweetmorning', 'bg-passion', 'bg-blush'] | random }} text-primary rounded-lg" style="padding: 1em; margin: 1em;">
                <!-- header -->
                <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
                <p><small>{{ post.timestamp }}</small></p>
                <!-- content -->
                <p>{{ post.message }}</p>
-               <button class="btn btn-labeled btn-danger" onclick="reportCard('{{ post._id }}')">
-                <span class="btn-label"><i class="fas fa-flag" style="margin-right: 0.5rem;"></i></i>Report Post</span>
+               <button class="btn btn-labeled btn-light" onclick="reportCard('{{ post._id }}')">
+                    <span class="ml-auto"><i class="fas fa-flag"></i></span>
           </div>
+     {% endfor %}
+     </div>
+     <div class="row">
+          {% for post in posts %}
+               <div class="col {{ ['bg-ibizasunset', 'bg-sweetmorning', 'bg-passion', 'bg-blush'] | random }} text-primary rounded-lg" style="padding: 1em; margin: 1em;">
+               <!-- header -->
+               <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
+               <p><small>{{ post.timestamp }}</small></p>
+               <!-- content -->
+               <p>{{ post.message }}</p>
+               <button class="btn btn-labeled btn-light" onclick="reportCard('{{ post._id }}')">
+                    <span class="ml-auto"><i class="fas fa-flag"></i></span>
+          </div>
+          {% endfor %}
+     </div>
+     <div class="row">
+          {% for post in posts %}
+               <div class="col {{ ['bg-ibizasunset', 'bg-sweetmorning', 'bg-passion', 'bg-blush'] | random }} text-primary rounded-lg" style="padding: 1em; margin: 1em;">
+               <!-- header -->
+               <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
+               <p><small>{{ post.timestamp }}</small></p>
+               <!-- content -->
+               <p>{{ post.message }}</p>
+               <button class="btn btn-labeled btn-light" onclick="reportCard('{{ post._id }}')">
+                    <span class="ml-auto"><i class="fas fa-flag"></i></span>
+          </div>
+          {% endfor %}
      </div>
      <br>
-     {% endfor %}
 {% endblock %}
 
 

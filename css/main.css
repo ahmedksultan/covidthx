@@ -12,3 +12,38 @@ h1 {
 .text-primary {
   color: white !important;
 }
+
+.border-5 {
+     border-width: 5px !important;
+}
+
+.bg-passion {
+  /* https://uigradients.com/#Passion */
+  background: #e53935;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #e35d5b, #e53935);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #e35d5b, #e53935); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.bg-blush {
+  background: #F15F79;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #F15F79, #B24592);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #F15F79, #B24592); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.bg-ibizasunset {
+  /* https://uigradients.com/#IbizaSunset */
+  background: #ee2959 !important; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ff6a00, #ee0979) !important;  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ff6a00, #ee0979) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.bg-sweetmorning {
+  /* https://uigradients.com/#SweetMorning */
+  background: #FF5F6D;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.btn-light {
+  color: #ee2959;
+}
