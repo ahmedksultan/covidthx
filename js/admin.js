@@ -7,3 +7,13 @@ function deleteCard(id) {
             window.location.reload();
         });
 }
+
+function approveCard(id) {
+    axios
+        .post("/cards/approve", {
+            id: id,
+        })
+        .then(function (res) {
+            window.location.reload();
+        });
+}

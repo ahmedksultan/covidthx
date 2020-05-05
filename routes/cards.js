@@ -39,10 +39,32 @@ router.post("/delete", function (req, res, next) {
 router.post("/report", function (req, res, next) {
     const id = req.body.id;
 
-    Card.findOne({_id: id}, function (err, doc) {
+    Card.findOne({ _id: id }, function (err, doc) {
         doc.reported = true;
         doc.save();
     })
-})
+        .then(() => {
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            res.json({ err: err });
+        });
+});
+
+/* POST report a card. */
+router.post("/approve", function (req, res, next) {
+    const id = req.body.id;
+
+    Card.findOne({ _id: id }, function (err, doc) {
+        doc.reported = false;
+        doc.save();
+    })
+        .then(() => {
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            res.json({ err: err });
+        });
+});
 
 module.exports = router;

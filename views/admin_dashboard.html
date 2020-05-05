@@ -12,10 +12,8 @@
 
 {% block insert %}
      <br>
-     <div class="header">
-          <h1 class='text-center mb-3'>Admin Dashboard</h1>
-          <a class="text-center mb-5 btn btn-danger btn-lg" href="/admins/reported">View Reported Posts</a>
-     </div>
+     <h1 class='text-center mb-3'>Admin Dashboard</h1>
+     <a class="mb-5 btn btn-danger btn-lg" href="/admins/reported">View Reported Posts</a>
      {% for post in posts %}
      <div class="row"> 
           <div class="container col w-100 bg-light border border-danger text-danger rounded" style="padding: 1em;">
@@ -24,6 +22,10 @@
                <p><small>{{ post.timestamp }}</small></p>
                <!-- content -->
                <p>{{ post.message }}</p>
+               {% if post.reported %}
+               <button class="mr-3 btn btn-labeled btn-danger" onclick="approveCard('{{ post._id }}')">
+                 <span class="btn-label"><i class="far fa-flag" style="margin-right: 0.5rem;"></i></i>Approve Post</span>
+               {% endif %}
                <button class="btn btn-labeled btn-danger" onclick="deleteCard('{{ post._id }}')">
                 <span class="btn-label"><i class="fas fa-trash" style="margin-right: 0.5rem;"></i></i>Delete Post</span>
             </button>

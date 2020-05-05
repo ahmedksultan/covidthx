@@ -22,7 +22,9 @@
                <p><small>{{ post.timestamp }}</small></p>
                <!-- content -->
                <p>{{ post.message }}</p>
-               <button class="btn btn-labeled btn-danger" onclick="deleteCard('{{ post._id }}')">
+			   <button class="mr-3 btn btn-labeled btn-danger" onclick="approveCard('{{ post._id }}')">
+				<span class="btn-label"><i class="far fa-flag" style="margin-right: 0.5rem;"></i></i>Approve Post</span>
+               <button class="mr-3 btn btn-labeled btn-danger" onclick="deleteCard('{{ post._id }}')">
                 <span class="btn-label"><i class="fas fa-trash" style="margin-right: 0.5rem;"></i></i>Delete Post</span>
             </button>
           </div>
