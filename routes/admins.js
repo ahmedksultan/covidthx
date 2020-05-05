@@ -14,6 +14,14 @@ router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
     });
 });
 
+/* GET admin reported. */
+router.get("/reported", ensureAuthenticated, (req, res, next) => {
+    Card.find({reported: true}, (err, cards) => {
+        array = cards;
+        res.render("admin_reported.html", {posts: array});
+    });
+});
+
 /* GET register page. */
 router.get("/register", function (req, res, next) {
     res.render("admin_register.html");
