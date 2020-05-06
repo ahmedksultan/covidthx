@@ -50,3 +50,13 @@ function reportCard(id) {
             window.location.reload();
         });
 }
+
+function heartCard(id) {
+    axios
+        .post("/cards/heart", {
+            id: id,
+        })
+        .then(function (res) {
+            window.location.reload();
+        });
+}
