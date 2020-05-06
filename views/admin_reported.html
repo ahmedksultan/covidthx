@@ -1,12 +1,17 @@
 {% extends "parent.html" %}
 
 {% block navbar %}
-<nav class="navbar navbar-transparent">
-     <!-- logo -->
-     <a class="navbar-brand" href="/">
-          <img src="/public/images/logo.png" alt="not working" height="100" width="215">
-     </a>
-     <div>
+<nav class="navbar navbar-transparent navbar-expand-lg">
+  <!-- logo -->
+  <a class="navbar-brand" href="/">
+       <img src="/public/images/logo.png" alt="Wall of Thanks Logo" height="100" width="215">
+  </a>
+
+ <button class="navbar-toggler bg-danger btn-lg ml-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+ </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <a class="btn btn-danger btn-lg" href="/admins/dashboard">View All Posts</a>
           <a class="btn btn-danger btn-lg ml-3" href="/admins/logout">Logout</a>
      </div>
@@ -16,7 +21,7 @@
 {% block insert %}
 	<br>
 	<h1 class='text-center mb-3'>Admin Reported</h1>
-     <div class="row"> 
+     <div class="row">
      {% for post in posts %}
      <div class="col-md-6 p-3">
           <div class="p-4 {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow">

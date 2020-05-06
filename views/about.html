@@ -1,12 +1,17 @@
 {% extends "parent.html" %}
 
 {% block navbar %}
-<nav class="navbar navbar-transparent">
+<nav class="navbar navbar-expand-lg navbar-transparent">
   <!-- logo -->
   <a class="navbar-brand" href="/">
     <img src="/public/images/logo.png" alt="Wall of Thanks Logo" height="100" width="215">
   </a>
-  <div>
+
+  <button class="navbar-toggler bg-danger btn-lg ml-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+  </button>
+
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
     <a class="btn btn-danger btn-lg" href="/">
       <i class="far fa-edit"></i>

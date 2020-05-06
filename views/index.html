@@ -1,21 +1,28 @@
 {% extends "parent.html" %}
 
 {% block navbar %}
-<nav class="navbar navbar-transparent">
+<nav class="navbar navbar-expand-lg navbar-transparent " >
+
      <!-- logo -->
      <a class="navbar-brand" href="/">
           <img src="/public/images/logo.png" alt="Wall of Thanks Logo" height="100" width="215">
      </a>
-     <div>
-          <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal">
+
+    <button class="navbar-toggler bg-danger btn-lg ml-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+    </button>
+
+     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <button type="button" class="btn btn-danger btn-lg float-right" data-toggle="modal" data-target="#exampleModal">
                <i class="far fa-edit"></i>
                Add to the Wall
           </button>
-          <a class="btn btn-danger btn-lg ml-3" href="/about">
+          <a class="btn btn-danger btn-lg ml-3 float-right" href="/about">
                <i class="fas fa-heart"></i>
                About Us
           </a>
      </div>
+
 </nav>
 {% endblock %}
 
