@@ -1,7 +1,7 @@
 {% extends "parent.html" %}
 
 {% block navbar %}
-<nav class="navbar navbar-expand-lg navbar-transparent " >
+<nav class="navbar navbar-expand-lg navbar-transparent" >
 
      <!-- logo -->
      <a class="navbar-brand" href="/">
@@ -12,15 +12,17 @@
      <span class="navbar-toggler-icon"></span>
     </button>
 
-     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <button type="button" class="btn btn-danger btn-lg float-right" data-toggle="modal" data-target="#exampleModal">
-               <i class="far fa-edit"></i>
-               Add to the Wall
-          </button>
-          <a class="btn btn-danger btn-lg ml-3 float-right" href="/about">
-               <i class="fas fa-heart"></i>
-               About Us
-          </a>
+     <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+          <div class="ml-auto">
+               <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal">
+                    <i class="far fa-edit"></i>
+                    Add to the Wall
+               </button>
+               <a class="btn btn-danger btn-lg ml-3" href="/about">
+                    <i class="fas fa-heart"></i>
+                    About Us
+               </a>
+          </div>
      </div>
 
 </nav>
