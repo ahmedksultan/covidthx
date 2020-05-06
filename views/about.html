@@ -1,1 +1,23 @@
 {% extends "parent.html" %}
+
+{% block navbar %}
+<nav class="navbar navbar-transparent">
+     <!-- logo -->
+     <a class="navbar-brand" href="/">
+          <img src="/public/images/logo.png" alt="Wall of Thanks Logo" height="100" width="215">
+     </a>
+     <div>
+          <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal">
+               <i class="far fa-edit"></i>
+               Add to the Wall
+          </button>
+
+          <button type="button" class="btn btn-secondary btn-lg">
+            <a class="button" href="/about">
+               <i class="fas fa-heart"></i>
+               About Us
+            </a>
+          </button>
+     </div>
+</nav>
+{% endblock %}
