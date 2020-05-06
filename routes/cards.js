@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+const { ensureAuthenticated } = require("../config/auth");
 const Card = require("../models/Card");
 
 /* POST create a new card. */
@@ -23,7 +24,7 @@ router.post("/create", function (req, res, next) {
 });
 
 /* POST delete a card. */
-router.post("/delete", function (req, res, next) {
+router.post("/delete", ensureAuthenticated, function (req, res, next) {
     const id = req.body.id;
 
     Card.deleteOne({ _id: id })
@@ -52,7 +53,7 @@ router.post("/report", function (req, res, next) {
 });
 
 /* POST report a card. */
-router.post("/approve", function (req, res, next) {
+router.post("/approve", ensureAuthenticated, function (req, res, next) {
     const id = req.body.id;
 
     Card.findOne({ _id: id }, function (err, doc) {
