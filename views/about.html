@@ -10,7 +10,7 @@
 
     <a class="btn btn-danger btn-lg" href="/">
       <i class="far fa-edit"></i>
-      Add to the Wall
+      Back to the Wall
     </a>
 
   </div>
@@ -21,7 +21,7 @@
 
 <br>
 
-<div class="col {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow" style="padding: 1em; margin: 1em;">
+<div class="col {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary shadow" style="padding: 3em; margin: 1em; border-radius: 50px;">
   <!-- header -->
   <h1> About Us </h1>
 
@@ -51,11 +51,5 @@
   </h4>
 
   <br>
-
-  <button class="btn btn-labeled btn-outline-light" onclick="reportCard('{{ post._id }}')">
-    <span class="ml-auto"><i class="fas fa-flag"></i></span>
-
-  </div>
-
 
   {% endblock %}
