@@ -6,33 +6,37 @@
      <a class="navbar-brand" href="/">
           <img src="/public/images/logo.png" alt="not working" height="100" width="215">
      </a>
-     <a class="btn btn-danger btn-lg" href="/admins/logout">Logout</a>
+     <div>
+          <a class="btn btn-danger btn-lg" href="/admins/reported">View Reported Posts</a>
+          <a class="btn btn-danger btn-lg ml-3" href="/admins/logout">Logout</a>
+     </div>
 </nav>
 {% endblock %}
 
 {% block insert %}
      <br>
      <h1 class='text-center mb-3'>Admin Dashboard</h1>
-     <a class="mb-5 btn btn-danger btn-lg" href="/admins/reported">View Reported Posts</a>
-     {% for post in posts %}
      <div class="row"> 
-          <div class="container col w-100 bg-light border border-danger text-danger rounded" style="padding: 1em;">
-               <!-- header -->
-               <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
-               <p><small>{{ post.timestamp }}</small></p>
-               <!-- content -->
-               <p>{{ post.message }}</p>
-               {% if post.reported %}
-               <button class="mr-3 btn btn-labeled btn-danger" onclick="approveCard('{{ post._id }}')">
-                 <span class="btn-label"><i class="far fa-flag" style="margin-right: 0.5rem;"></i></i>Approve Post</span>
-               {% endif %}
-               <button class="btn btn-labeled btn-danger" onclick="deleteCard('{{ post._id }}')">
-                <span class="btn-label"><i class="fas fa-trash" style="margin-right: 0.5rem;"></i></i>Delete Post</span>
-            </button>
+     {% for post in posts %}
+          <div class="col-md-6 p-3">
+               <div class="p-4 {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow">
+                    <!-- header -->
+                    <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
+                    <p><small>{{ post.timestamp }}</small></p>
+                    <!-- content -->
+                    <p>{{ post.message }}</p>
+                    <p><small>{{ post.hearts }} {{ "heart" if post.hearts == 1 else "hearts" }}</small></p>
+                    {% if post.reported %}
+                    <button class="btn btn-labeled btn-outline-light mr-3" onclick="approveCard('{{ post._id }}')">
+                         <span><i class="fas fa-check mr-2"></i>Approve Post</span>
+                    {% endif %}
+                    <button class="btn btn-labeled btn-outline-light" onclick="deleteCard('{{ post._id }}')">
+                         <span><i class="fas fa-trash mr-2"></i>Delete Post</span>
+               </div>
           </div>
+     {% endfor %}
      </div>
      <br>
-     {% endfor %}
 {% endblock %}
 
 
