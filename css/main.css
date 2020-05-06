@@ -108,3 +108,7 @@ h1 {
 .btn-outline-light:hover {
     color: #ee2959;
 }
+
+.card-columns .card {
+    border: 0px;
+}
