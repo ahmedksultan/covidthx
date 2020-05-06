@@ -1,20 +1,20 @@
 {% extends "parent.html" %}
 
 {% block navbar %}
-<nav class="navbar navbar-transparent navbar-expand-lg">
+<nav class="navbar navbar-dark navbar-expand-lg">
      <!-- logo -->
      <a class="navbar-brand" href="/">
           <img src="/public/images/logo.png" alt="not working" height="100" width="215">
      </a>
 
-     <button class="navbar-toggler bg-danger btn-lg ml-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     <button class="navbar-toggler bg-danger" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
      </button>
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
            <div class="ml-auto">
-              <a class="btn btn-danger btn-lg" href="/admins/reported">View Reported Posts</a>
-              <a class="btn btn-danger btn-lg ml-3" href="/admins/logout">Logout</a>
+              <a class="btn btn-danger btn-lg m-1" href="/admins/reported">View Reported Posts</a>
+              <a class="btn btn-danger btn-lg m-1" href="/admins/logout">Logout</a>
           </div>
      </div>
 </nav>
