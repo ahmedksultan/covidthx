@@ -7,17 +7,53 @@
           <img src="/public/images/logo.png" alt="Wall of Thanks Logo" height="100" width="215">
      </a>
      <div>
-          <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal">
-               <i class="far fa-edit"></i>
-               Add to the Wall
-          </button>
-
-          <button type="button" class="btn btn-secondary btn-lg">
-            <a class="button" href="/about">
-               <i class="fas fa-heart"></i>
-               About Us
+          <a class="btn btn-danger btn-lg" href="/">
+            <i class="far fa-edit"></i>
+            Add to the Wall
             </a>
-          </button>
      </div>
 </nav>
+{% endblock %}
+
+{% block insert %}
+
+<br>
+
+<div class="col {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow" style="padding: 1em; margin: 1em;">
+     <!-- header -->
+     <h1> About Us </h1>
+
+     <br>
+
+     <h4>
+
+       The last few weeks have presented a lot of changes in response to the COVID-19 pandemic. With social distancing and quarantining, our lives feel restricted. The uncertainty of the future and our growing anxiousness as we are stuck inside take a toll on our mental health. We constantly wish for things to return to normal and in return often overlook the little moments we would otherwise be thankful for. The Wall of Thanks was created by three seniors at Stuyvesant High School as an effort to remind our community members of those small moments of privileged happiness.
+
+      </h4>
+
+      <br>
+
+      <h4>
+       So, whenever there’s something that puts a smile on your face, warms your heart, or makes you feel appreciative come and share here with the world. Thankfulness is contagious, so as you share these moments we hope you find comfort and hope. Most importantly, we want to remember and remind one another of how blessed we are even in the hardest of times.
+
+    </h4>
+
+    <br>
+
+    <h4>
+      Happy posting,
+    </h4>
+
+      <h4>
+      Team Wall of Thanks
+     </h4>
+
+     <br>
+
+     <button class="btn btn-labeled btn-outline-light" onclick="reportCard('{{ post._id }}')">
+          <span class="ml-auto"><i class="fas fa-flag"></i></span>
+
+</div>
+
+
 {% endblock %}
