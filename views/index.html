@@ -74,42 +74,18 @@
      <br>
      <div class="row">
      {% for post in posts %}
-          <div class="col {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow" style="padding: 1em; margin: 1em;">
-               <!-- header -->
-               <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
-               <p><small>{{ post.timestamp }}</small></p>
-               <!-- content -->
-               <p>{{ post.message }}</p>
-               <button class="btn btn-labeled btn-outline-light" onclick="reportCard('{{ post._id }}')">
-                    <span class="ml-auto"><i class="fas fa-flag"></i></span>
+          <div class="col-md-4 p-3">
+               <div class="p-4 {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow">
+                    <!-- header -->
+                    <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
+                    <p><small>{{ post.timestamp }}</small></p>
+                    <!-- content -->
+                    <p>{{ post.message }}</p>
+                    <button class="btn btn-labeled btn-outline-light" onclick="reportCard('{{ post._id }}')">
+                         <span class="ml-auto"><i class="fas fa-flag"></i></span>
+               </div>
           </div>
      {% endfor %}
-     </div>
-     <div class="row">
-          {% for post in posts %}
-               <div class="col {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow" style="padding: 1em; margin: 1em;">
-               <!-- header -->
-               <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
-               <p><small>{{ post.timestamp }}</small></p>
-               <!-- content -->
-               <p>{{ post.message }}</p>
-               <button class="btn btn-labeled btn-outline-light" onclick="reportCard('{{ post._id }}')">
-                    <span class="ml-auto"><i class="fas fa-flag"></i></span>
-          </div>
-          {% endfor %}
-     </div>
-     <div class="row">
-          {% for post in posts %}
-               <div class="col {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow" style="padding: 1em; margin: 1em;">
-               <!-- header -->
-               <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
-               <p><small>{{ post.timestamp }}</small></p>
-               <!-- content -->
-               <p>{{ post.message }}</p>
-               <button class="btn btn-labeled btn-outline-light" onclick="reportCard('{{ post._id }}')">
-                    <span class="ml-auto"><i class="fas fa-flag"></i></span>
-          </div>
-          {% endfor %}
      </div>
      <br>
 {% endblock %}

@@ -11,15 +11,22 @@ const CardSchema = new mongoose.Schema({
 	},
 	timestamp: {
 		type: Date,
-		default: Date.now
+		default: Date.now,
+		required: true
 	},
 	message: {
 		type: String,
 		required: true
 	},
+	hearts: {
+		type: Number,
+		default: 0,
+		required: true
+	},
 	reported: {
 		type: Boolean,
-		default: false
+		default: false,
+		required: true
 	}
 })
 
