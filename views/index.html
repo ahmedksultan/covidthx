@@ -111,9 +111,9 @@
                          <p><small>{{ posts[i].name}}, <i>{{ posts[i].location }}<br>{{ posts[i].timestamp }}</i></small></p>
                          <!-- content -->
                          <p>{{ posts[i].message }}</p>
-                         <button class="btn btn-labeled btn-outline-light" onclick="heartCard('{{ post._id }}')">
+                         <button class="btn btn-labeled btn-outline-light" onclick="heartCard('{{ posts[i]._id }}')">
                               <span><i class="fas fa-heart mr-2"></i>{{ posts[i].hearts }}</span></button>
-                         <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ post._id }}')">
+                         <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ posts[i]._id }}')">
                               <span><i class="fas fa-flag"></i></span></button>
                     </div>
                </div>
@@ -127,9 +127,9 @@
                          <p><small>{{ posts[i].name}}, <i>{{ posts[i].location }}<br>{{ posts[i].timestamp }}</i></small></p>
                          <!-- content -->
                          <p>{{ posts[i].message }}</p>
-                         <button class="btn btn-labeled btn-outline-light" onclick="heartCard('{{ post._id }}')">
+                         <button class="btn btn-labeled btn-outline-light" onclick="heartCard('{{ posts[i]._id }}')">
                               <span><i class="fas fa-heart mr-2"></i>{{ posts[i].hearts }}</span></button>
-                         <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ post._id }}')">
+                         <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ posts[i]._id }}')">
                               <span><i class="fas fa-flag"></i></span></button>
                     </div>
                </div>
@@ -143,9 +143,9 @@
                          <p><small>{{ posts[i].name}}, <i>{{ posts[i].location }}<br>{{ posts[i].timestamp }}</i></small></p>
                          <!-- content -->
                          <p>{{ posts[i].message }}</p>
-                         <button class="btn btn-labeled btn-outline-light" onclick="heartCard('{{ post._id }}')">
+                         <button class="btn btn-labeled btn-outline-light" onclick="heartCard('{{ posts[i]._id }}')">
                               <span><i class="fas fa-heart mr-2"></i>{{ posts[i].hearts }}</span></button>
-                         <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ post._id }}')">
+                         <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ posts[i]._id }}')">
                               <span><i class="fas fa-flag"></i></span></button>
                     </div>
                </div>
