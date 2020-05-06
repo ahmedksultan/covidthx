@@ -35,8 +35,14 @@ CardSchema.plugin(mongoosePaginate);
 
 const Card = mongoose.model("Card", CardSchema);
 
-Card.paginate({}, { offset: 1, limit: 50 }).then(function(result) {
-	
+Card.paginate({}, 1, 50, function(error, pageCount, paginatedResults) {
+	if (error) {
+		console.error(error);
+	}else{
+		console.log('Pages:', pagecount);
+		console.log(paginatedResults);
+	}
+
 });
 
 module.exports = Card;
