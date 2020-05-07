@@ -112,3 +112,7 @@ h1 {
 .card-columns .card {
     border: 0px;
 }
+
+.message {
+    white-space: pre-wrap;
+}

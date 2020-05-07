@@ -33,6 +33,10 @@
                     <!-- content -->
                     <p>{{ post.message }}</p>
                     <p><small>{{ post.hearts }} {{ "heart" if post.hearts == 1 else "hearts" }}</small></p>
+                    {% if posts[i].img %}
+                         <img src="{{ posts[i].img }}" alt="" width="100%" height="auto" class="rounded-sm">
+                         <br> <br>
+                    {% endif %}
                     {% if post.reported %}
                     <button class="btn btn-labeled btn-outline-light mr-3" onclick="approveCard('{{ post._id }}')">
                          <span><i class="fas fa-check mr-2"></i>Approve Post</span>

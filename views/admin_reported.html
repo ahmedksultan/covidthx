@@ -31,8 +31,12 @@
                     <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
                     <p><small>{{ post.timestamp }}</small></p>
                     <!-- content -->
-                    <p>{{ post.message }}</p>
+                    <p class="message">{{ post.message }}</p>
                     <p><small>{{ post.hearts }} hearts</small></p>
+                    {% if posts[i].img %}
+                         <img src="{{ posts[i].img }}" alt="" width="100%" height="auto" class="rounded-sm">
+                         <br> <br>
+                    {% endif %}
                     <button class="btn btn-labeled btn-outline-light mr-3" onclick="approveCard('{{ post._id }}')">
                          <span><i class="fas fa-check mr-2"></i>Approve Post</span>
                     <button class="btn btn-labeled btn-outline-light" onclick="deleteCard('{{ post._id }}')">
