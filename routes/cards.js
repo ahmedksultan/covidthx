@@ -5,7 +5,7 @@ const Card = require("../models/Card");
 
 /* POST create a new card. */
 router.post("/create", function (req, res, next) {
-    const { name, location, message } = req.body;
+    const { name, location, message, img } = req.body;
 
     const newCard = new Card({
         name: name,
