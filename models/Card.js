@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const mongoosePaginate = require('mongoose-paginate-v2');
 
 const CardSchema = new mongoose.Schema({
 	name: {
@@ -31,18 +30,6 @@ const CardSchema = new mongoose.Schema({
 	}
 })
 
-CardSchema.plugin(mongoosePaginate);
-
 const Card = mongoose.model("Card", CardSchema);
-
-Card.paginate({}, 1, 50, function(error, pageCount, paginatedResults) {
-	if (error) {
-		console.error(error);
-	}else{
-		console.log('Pages:', pagecount);
-		console.log(paginatedResults);
-	}
-
-});
 
 module.exports = Card;
