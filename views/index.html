@@ -92,13 +92,13 @@
                <div class="card">
                     <div class="p-4 {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow">
                          <!-- header -->
-                         <p><small>{{ posts[i].name}}, <i>{{ posts[i].location }}<br>{{ posts[i].timestamp }}</i></small></p>
+                         {% if posts[i].img %}
+                         <img src="{{ posts[i].img }}" alt="" width="100%" height="auto" class="rounded-sm">
+                         <br> <br>
+                         {% endif %}
+                         <p><small>{{ posts[i].name}}, <i>{{ posts[i].location }}</i></small></p>
                          <!-- content -->
                          <p class="message">{{ posts[i].message }}</p>
-                         {% if posts[i].img %}
-                              <img src="{{ posts[i].img }}" alt="" width="100%" height="auto" class="rounded-sm">
-                              <br> <br>
-                         {% endif %}
                          <button class="btn btn-labeled btn-outline-light" onclick="heartCard('{{ posts[i]._id }}')">
                               <span><i class="fas fa-heart mr-2"></i>{{ posts[i].hearts }}</span></button>
                          <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ posts[i]._id }}')">
@@ -111,14 +111,14 @@
           {% for i in range(1, posts | length, 3) %}
                <div class="card">
                     <div class="p-4 {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow">
+                         {% if posts[i].img %}
+                         <img src="{{ posts[i].img }}" alt="" width="100%" height="auto" class="rounded-sm">
+                         <br> <br>
+                         {% endif %}
                          <!-- header -->
-                         <p><small>{{ posts[i].name}}, <i>{{ posts[i].location }}<br>{{ posts[i].timestamp }}</i></small></p>
+                         <p><small>{{ posts[i].name}}, <i>{{ posts[i].location }}</i></small></p>
                          <!-- content -->
                          <p class="message">{{ posts[i].message }}</p>
-                         {% if posts[i].img %}
-                              <img src="{{ posts[i].img }}" alt="" width="100%" height="auto" class="rounded-sm">
-                              <br> <br>
-                         {% endif %}
                          <button class="btn btn-labeled btn-outline-light" onclick="heartCard('{{ posts[i]._id }}')">
                               <span><i class="fas fa-heart mr-2"></i>{{ posts[i].hearts }}</span></button>
                          <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ posts[i]._id }}')">
@@ -131,14 +131,14 @@
           {% for i in range(2, posts | length, 3) %}
                <div class="card">
                     <div class="p-4 {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow">
+                         {% if posts[i].img %}
+                         <img src="{{ posts[i].img }}" alt="" width="100%" height="auto" class="rounded-sm">
+                         <br> <br>
+                         {% endif %}
                          <!-- header -->
-                         <p><small>{{ posts[i].name}}, <i>{{ posts[i].location }}<br>{{ posts[i].timestamp }}</i></small></p>
+                         <p><small>{{ posts[i].name}}, <i>{{ posts[i].location }}</i></small></p>
                          <!-- content -->
                          <p class="message">{{ posts[i].message }}</p>
-                         {% if posts[i].img %}
-                              <img src="{{ posts[i].img }}" alt="" width="100%" height="auto" class="rounded-sm">
-                              <br> <br>
-                         {% endif %}
                          <button class="btn btn-labeled btn-outline-light" onclick="heartCard('{{ posts[i]._id }}')">
                               <span><i class="fas fa-heart mr-2"></i>{{ posts[i].hearts }}</span></button>
                          <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ posts[i]._id }}')">

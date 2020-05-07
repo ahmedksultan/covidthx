@@ -27,16 +27,16 @@
      {% for post in posts %}
           <div class="col-md-6 p-3">
                <div class="p-4 {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow">
+                    {% if post.img %}
+                         <img src="{{ post.img }}" alt="" width="100%" height="auto" class="rounded-sm">
+                         <br> <br>
+                    {% endif %}
                     <!-- header -->
                     <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
                     <p><small>{{ post.timestamp }}</small></p>
                     <!-- content -->
                     <p>{{ post.message }}</p>
                     <p><small>{{ post.hearts }} {{ "heart" if post.hearts == 1 else "hearts" }}</small></p>
-                    {% if posts[i].img %}
-                         <img src="{{ posts[i].img }}" alt="" width="100%" height="auto" class="rounded-sm">
-                         <br> <br>
-                    {% endif %}
                     {% if post.reported %}
                     <button class="btn btn-labeled btn-outline-light mr-3" onclick="approveCard('{{ post._id }}')">
                          <span><i class="fas fa-check mr-2"></i>Approve Post</span>

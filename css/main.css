@@ -116,3 +116,7 @@ h1 {
 .message {
     white-space: pre-wrap;
 }
+
+.rounded-sm {
+    border-radius: 25px !important;
+}
