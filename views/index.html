@@ -68,6 +68,10 @@
                                    placeholder="Write your message here (max 280 characters)."
                                    required></textarea>
                          </div>
+                         <div class="form-group">
+                              <label for=Input4">Image (optional)</label>
+                              <input type="text" class="form-control" id="img" name="img" placeholder="Paste a link to an image here! (i.e. i.imgur.com/LIJiala.jpg)">
+                         </div>
                     </div>
                     <div class="modal-footer">
                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -107,6 +111,9 @@
                          <p><small>{{ posts[i].name}}, <i>{{ posts[i].location }}<br>{{ posts[i].timestamp }}</i></small></p>
                          <!-- content -->
                          <p>{{ posts[i].message }}</p>
+                         {% if posts[i].img %}
+                              <img src="{{ posts[i].img }}" alt="" width="100%" height="auto">
+                         {% endif %}
                          <button class="btn btn-labeled btn-outline-light" onclick="heartCard('{{ posts[i]._id }}')">
                               <span><i class="fas fa-heart mr-2"></i>{{ posts[i].hearts }}</span></button>
                          <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ posts[i]._id }}')">

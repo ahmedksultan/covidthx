@@ -11,6 +11,7 @@ router.post("/create", function (req, res, next) {
         name: name,
         location: location,
         message: message,
+        img: img,
     });
     newCard
         .save()
