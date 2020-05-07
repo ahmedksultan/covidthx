@@ -25,23 +25,38 @@
 	<h1 class='text-center mb-3'>Admin Reported</h1>
      <div class="row">
      {% for post in posts %}
-     <div class="col-md-6 p-3">
-          <div class="p-4 {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow">
-               <!-- header -->
-               <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
-               <p><small>{{ post.timestamp }}</small></p>
-               <!-- content -->
-               <p>{{ post.message }}</p>
-               <p><small>{{ post.hearts }} hearts</small></p>
-               <button class="btn btn-labeled btn-outline-light mr-3" onclick="approveCard('{{ post._id }}')">
-                    <span><i class="fas fa-check mr-2"></i>Approve Post</span>
-               <button class="btn btn-labeled btn-outline-light" onclick="deleteCard('{{ post._id }}')">
-                    <span><i class="fas fa-trash mr-2"></i>Delete Post</span>
+          <div class="col-md-6 p-3">
+               <div class="p-4 {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow">
+                    <!-- header -->
+                    <p><small>{{ post.name}}, <i>{{ post.location }}</i></small></p>
+                    <p><small>{{ post.timestamp }}</small></p>
+                    <!-- content -->
+                    <p>{{ post.message }}</p>
+                    <p><small>{{ post.hearts }} hearts</small></p>
+                    <button class="btn btn-labeled btn-outline-light mr-3" onclick="approveCard('{{ post._id }}')">
+                         <span><i class="fas fa-check mr-2"></i>Approve Post</span>
+                    <button class="btn btn-labeled btn-outline-light" onclick="deleteCard('{{ post._id }}')">
+                         <span><i class="fas fa-trash mr-2"></i>Delete Post</span>
+               </div>
           </div>
-     </div>
      {% endfor %}
      </div>
      <br>
+     <div class="page-navigation text-center">
+          {% if pages > 1 %}
+          <p>Page {{ page + 1 }} of {{ pages }}</p>
+          {% endif %}
+          {% if page > 0 %}
+          <a class="btn btn-danger btn-lg" href="/admins/reported?page={{ page - 1}}">
+               <span><i class="fas fa-arrow-alt-circle-left mr-2"></i>Previous Page</span>
+          </a>
+          {% endif %}
+          {% if page + 1 < pages %}
+          <a class="btn btn-danger btn-lg" href="/admins/reported?page={{ page + 1}}">
+               <span>Next Page<i class="fas fa-arrow-alt-circle-right ml-2"></i></span>
+          </a>
+          {% endif %}
+     </div>
 {% endblock %}
 
 

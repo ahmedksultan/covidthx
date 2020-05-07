@@ -8,21 +8,53 @@ const Card = require("../models/Card");
 
 /* GET admin dashboard. */
 router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
-    Card.find({})
-        .sort({ timestamp: "desc" })
-        .exec((err, cards) => {
-            array = cards;
-            res.render("admin_dashboard.html", { posts: array });
+    var perPage = 50;
+    var queryPage = req.query["page"];
+    if (queryPage == undefined) {
+        queryPage = 0;
+    }
+    var page = Math.max(0, queryPage);
+
+    Card.find()
+        .limit(perPage)
+        .skip(perPage * page)
+        .sort({
+            timestamp: "desc",
+        })
+        .exec(function (err, cards) {
+            Card.countDocuments().exec(function (err, count) {
+                res.render("admin_dashboard.html", {
+                    posts: cards,
+                    page: page,
+                    pages: Math.ceil(count / perPage),
+                });
+            });
         });
 });
 
 /* GET admin reported. */
 router.get("/reported", ensureAuthenticated, (req, res, next) => {
+    var perPage = 50;
+    var queryPage = req.query["page"];
+    if (queryPage == undefined) {
+        queryPage = 0;
+    }
+    var page = Math.max(0, queryPage);
+
     Card.find({ reported: true })
-        .sort({ timestamp: "desc" })
-        .exec((err, cards) => {
-            array = cards;
-            res.render("admin_reported.html", { posts: array });
+        .limit(perPage)
+        .skip(perPage * page)
+        .sort({
+            timestamp: "desc",
+        })
+        .exec(function (err, cards) {
+            Card.countDocuments({ reported: true }).exec(function (err, count) {
+                res.render("admin_reported.html", {
+                    posts: cards,
+                    page: page,
+                    pages: Math.ceil(count / perPage),
+                });
+            });
         });
 });
 

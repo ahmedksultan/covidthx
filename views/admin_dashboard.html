@@ -44,6 +44,21 @@
      {% endfor %}
      </div>
      <br>
+     <div class="page-navigation text-center">
+          {% if pages > 1 %}
+          <p>Page {{ page + 1 }} of {{ pages }}</p>
+          {% endif %}
+          {% if page > 0 %}
+          <a class="btn btn-danger btn-lg" href="/admins/dashboard?page={{ page - 1}}">
+               <span><i class="fas fa-arrow-alt-circle-left mr-2"></i>Previous Page</span>
+          </a>
+          {% endif %}
+          {% if page + 1 < pages %}
+          <a class="btn btn-danger btn-lg" href="/admins/dashboard?page={{ page + 1}}">
+               <span>Next Page<i class="fas fa-arrow-alt-circle-right ml-2"></i></span>
+          </a>
+          {% endif %}
+     </div>
 {% endblock %}
 
 
