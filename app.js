@@ -7,6 +7,7 @@ const unirest = require("unirest");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
+const flash = require('connect-flash');
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 // Configure Body-Parser
@@ -41,6 +42,7 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // Routes
 app.use("/", require("./routes/index"));
