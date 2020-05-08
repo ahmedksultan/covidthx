@@ -31,13 +31,24 @@ function checkProfanity() {
         )
         .then(function (response) {
             if (response.data == true) {
-                alert("Your message cannot contain profanity");
+                alert("Your message cannot contain profanity!");
                 return false;
             } else {
                 document.createCardForm.submit();
                 return true;
             }
         });
+}
+
+function checkImage() {
+    event.preventDefault();
+    // getting info from img field
+    var check = document.createCardForm.img.value;
+    // checking for https://
+    if (check.substring(0, 7) != 'https://' && check != None) {
+        alert("Hmmm... that image link doesn't look right. Try again, and make sure to include https:// and an image extension in your address.");
+        return false;
+    }
 }
 
 function reportCard(id) {
