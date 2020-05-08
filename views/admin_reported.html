@@ -36,7 +36,7 @@
                     <p><small>{{ post.timestamp }}</small></p>
                     <!-- content -->
                     <p class="message">{{ post.message }}</p>
-                    <p><small>{{ post.hearts }} hearts</small></p>
+                    <p><small>{{ post.hearts }} {{ "heart" if post.hearts == 1 else "hearts" }}</small></p>
                     <button class="btn btn-labeled btn-outline-light mr-3" onclick="approveCard('{{ post._id }}')">
                          <span><i class="fas fa-check mr-2"></i>Approve Post</span>
                     <button class="btn btn-labeled btn-outline-light" onclick="deleteCard('{{ post._id }}')">
