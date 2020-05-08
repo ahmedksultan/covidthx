@@ -7,7 +7,7 @@ const unirest = require("unirest");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
-const flash = require('connect-flash');
+const flash = require("connect-flash");
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 // Configure Body-Parser

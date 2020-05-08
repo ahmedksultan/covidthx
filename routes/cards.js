@@ -70,7 +70,7 @@ router.post("/approve", ensureAuthenticated, function (req, res, next) {
 });
 
 /* POST heart a card. */
-router.post("/heart", function(req, res, next) {
+router.post("/heart", function (req, res, next) {
     const id = req.body.id;
 
     Card.findOne({ _id: id }, function (err, doc) {
@@ -83,6 +83,6 @@ router.post("/heart", function(req, res, next) {
         .catch((err) => {
             res.json({ err: err });
         });
-})
+});
 
 module.exports = router;
