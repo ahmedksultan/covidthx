@@ -21,7 +21,6 @@ function updateLocation() {
 
 function checkProfanity() {
     event.preventDefault();
-    console.log(document.createCardForm.message.value);
     var check =
         document.createCardForm.message.value +
         document.createCardForm.location.value +
