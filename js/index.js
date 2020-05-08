@@ -1,5 +1,5 @@
 function updateLocation() {
-    var json = "https://ip-api.com/json/?fields=status,city,region";
+    var json = "http://ip-api.com/json/?fields=status,city,region";
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function () {
