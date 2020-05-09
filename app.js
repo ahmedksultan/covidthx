@@ -1,6 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-const cors = require("cors");
 const bodyParser = require("body-parser");
 const nunjucks = require("nunjucks");
 const mongoose = require("mongoose");
@@ -9,6 +8,13 @@ const passport = require("passport");
 const flash = require("connect-flash");
 
 const app = express();
+
+var cors = require("cors");
+var corsOptions = {
+    origin: "*",
+    optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
