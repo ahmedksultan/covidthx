@@ -121,8 +121,8 @@
                          <p class="message">{{ posts[i].message }}</p>
                          <button class="btn btn-labeled btn-outline-light" onclick="heartCard('{{ posts[i]._id }}')">
                               <span><i class="fas fa-heart mr-2"></i>{{ posts[i].hearts }}</span></button>
-                         <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ posts[i]._id }}')">
-                              <span><i class="fas fa-flag"></i></span></button>
+                              <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ posts[i]._id }}')">
+                                   <span>Report<i class="fas fa-flag ml-2"></i></span></button>
                     </div>
                </div>
           {% endfor %}
@@ -142,7 +142,7 @@
                          <button class="btn btn-labeled btn-outline-light" onclick="heartCard('{{ posts[i]._id }}')">
                               <span><i class="fas fa-heart mr-2"></i>{{ posts[i].hearts }}</span></button>
                          <button class="btn btn-labeled btn-outline-light float-right" onclick="reportCard('{{ posts[i]._id }}')">
-                              <span><i class="fas fa-flag"></i></span></button>
+                              <span>Report<i class="fas fa-flag ml-2"></i></span></button>
                     </div>
                </div>
           {% endfor %}
