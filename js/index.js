@@ -19,66 +19,47 @@ function updateLocation() {
     xhr.send();
 }
 
-async function checkProfanity() {
-    var input =
+function check() {
+    event.preventDefault();
+    const text =
         document.createCardForm.message.value +
         document.createCardForm.location.value +
         document.createCardForm.name.value;
     axios
         .get(
-            `https://www.purgomalum.com/service/containsprofanity?text=${input}`
+            `https://www.purgomalum.com/service/containsprofanity?text=${text}`
         )
         .then(function (response) {
             if (response.data == true) {
-                alert("Your message cannot contain profanity!");
+                alert("Your message cannot contain profanity");
                 return false;
+            } else {
+                var img = document.createCardForm.img.value;
+                if (!img) {
+                    document.createCardForm.submit();
+                    return true;
+                }
+                if (img.substring(0, 8) != "https://") {
+                    alert(
+                        "Hmmm... that image link doesn't look right. Make sure to include https:// and an image extension in your address."
+                    );
+                    return false;
+                } else {
+                    axios
+                        .get(img)
+                        .then(function (response) {
+							document.createCardForm.submit();
+                            return true;
+                        })
+                        .catch(function (error) {
+                            alert(
+                                "This doesn't look like a valid link. Try again."
+                            );
+                            return false;
+                        });
+                }
             }
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-        .then(function () {
-            return true;
         });
-}
-
-async function checkImage() {
-    // getting info from img field
-    var img = document.createCardForm.img.value;
-    if (!img) {
-        return true;
-    }
-    // imging for https://
-    if (img.substring(0, 8) != "https://") {
-        alert(
-            "Hmmm... that image link doesn't look right. Make sure to include https:// and an image extension in your address."
-        );
-        return false;
-    } else {
-        axios
-            .get(img)
-            .then(function (response) {
-                return true;
-            })
-            .catch(function (error) {
-                alert("This doesn't look like a valid link. Try again.");
-                return false;
-            });
-    }
-}
-
-async function check() {
-    event.preventDefault();
-    const profanity = await checkProfanity();
-    const image = await checkImage();
-    console.log("profanity: " + profanity);
-    console.log("image: " + image);
-    if (profanity && image) {
-        document.createCardForm.submit();
-        return true;
-    } else {
-        return false;
-    }
 }
 
 function reportCard(id) {
