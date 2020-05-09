@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const nunjucks = require("nunjucks");
 const mongoose = require("mongoose");
@@ -8,6 +9,7 @@ const passport = require("passport");
 const flash = require("connect-flash");
 
 const app = express();
+app.use(cors());
 
 // Configure Body-Parser
 app.use(bodyParser.json());
