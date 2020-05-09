@@ -20,6 +20,7 @@ router.get("/", async function (req, res, next) {
         .exec(function (err, cards) {
             Card.countDocuments().exec(function (err, count) {
                 res.render("index.html", {
+                    count: count,
                     posts: cards,
                     page: page,
                     pages: Math.ceil(count / perPage),
