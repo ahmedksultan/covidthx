@@ -5,7 +5,8 @@
 
      <!-- logo -->
      <a class="navbar-brand" href="/">
-          <img src="/public/images/logo.png" alt="Wall of Thanks Logo" height="100" width="215">
+          <img src="/public/images/logo.png" alt="Wall of Thanks Logo" height="100" width="215" style="margin-bottom: 1em;">
+          <h5 class="text-secondary">{{ count }} posts of thanks and counting...</h5>
      </a>
 
     <button class="navbar-toggler bg-danger" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,13 +85,6 @@
 {% endblock %}
 
 {% block insert %}
-     <br>
-     {% if count == 1 %}
-     <h3>{{ count }} post</h3>
-     {% else %}
-     <h3>{{ count }} posts</h3>
-     {% endif %}
-     <br>
 
      <div class="card-columns">
           <!-- every 0th -->
