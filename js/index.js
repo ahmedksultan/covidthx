@@ -15,23 +15,45 @@ function updateLocation() {
     xhr.send();
 }
 
-function checkProfanity() {
+function check() {
     event.preventDefault();
-    var check =
+    const text =
         document.createCardForm.message.value +
         document.createCardForm.location.value +
         document.createCardForm.name.value;
     axios
         .get(
-            `https://www.purgomalum.com/service/containsprofanity?text=${check}`
+            `https://www.purgomalum.com/service/containsprofanity?text=${text}`
         )
         .then(function (response) {
             if (response.data == true) {
                 alert("Your message cannot contain profanity");
                 return false;
             } else {
-                document.createCardForm.submit();
-                return true;
+                var img = document.createCardForm.img.value;
+                if (!img) {
+                    document.createCardForm.submit();
+                    return true;
+                }
+                if (img.substring(0, 8) != "https://") {
+                    alert(
+                        "Hmmm... that image link doesn't look right. Make sure to include https:// and an image extension in your address."
+                    );
+                    return false;
+                } else {
+                    axios
+                        .get(img)
+                        .then(function (response) {
+							document.createCardForm.submit();
+                            return true;
+                        })
+                        .catch(function (error) {
+                            alert(
+                                "This doesn't look like a valid link. Try again."
+                            );
+                            return false;
+                        });
+                }
             }
         });
 }

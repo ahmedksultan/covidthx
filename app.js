@@ -2,13 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const nunjucks = require("nunjucks");
-const app = express();
-const unirest = require("unirest");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
-const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
+const app = express();
 
 // Configure Body-Parser
 app.use(bodyParser.json());
