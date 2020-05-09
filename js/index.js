@@ -19,60 +19,64 @@ function updateLocation() {
     xhr.send();
 }
 
-function checkProfanity() {
-    event.preventDefault();
-    var check =
+async function checkProfanity() {
+    var input =
         document.createCardForm.message.value +
         document.createCardForm.location.value +
         document.createCardForm.name.value;
     axios
         .get(
-            `https://www.purgomalum.com/service/containsprofanity?text=${check}`
+            `https://www.purgomalum.com/service/containsprofanity?text=${input}`
         )
         .then(function (response) {
             if (response.data == true) {
                 alert("Your message cannot contain profanity!");
                 return false;
-            } else {
-                return true;
             }
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+        .then(function () {
+            return true;
         });
 }
 
-function checkImage() {
-    event.preventDefault();
+async function checkImage() {
     // getting info from img field
-    var check = document.createCardForm.img.value;
-    console.log(check)
-    if (!check) {
+    var img = document.createCardForm.img.value;
+    if (!img) {
         return true;
     }
-    // checking for https://
-    if (check.substring(0, 7) != 'https://') {
-        alert("Hmmm... that image link doesn't look right. Make sure to include https:// and an image extension in your address.");
+    // imging for https://
+    if (img.substring(0, 8) != "https://") {
+        alert(
+            "Hmmm... that image link doesn't look right. Make sure to include https:// and an image extension in your address."
+        );
         return false;
+    } else {
+        axios
+            .get(img)
+            .then(function (response) {
+                return true;
+            })
+            .catch(function (error) {
+                alert("This doesn't look like a valid link. Try again.");
+                return false;
+            });
     }
-    axios
-        .get(check)
-        .then(function (response) {
-            return true;
-        })
-        .catch(function (error) {
-            alert("This doesn't look like a valid link. Try again.");
-            return false;
-
-        })
 }
 
-function check() {
-    console.log("checkign...");
-    console.log(checkProfanity());
-    console.log(checkImage());
-    if (checkProfanity() && checkImage()) {
+async function check() {
+    event.preventDefault();
+    const profanity = await checkProfanity();
+    const image = await checkImage();
+    console.log("profanity: " + profanity);
+    console.log("image: " + image);
+    if (profanity && image) {
         document.createCardForm.submit();
         return true;
     } else {
-        alert("Something went wrong. Try again.");
         return false;
     }
 }
