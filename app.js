@@ -10,11 +10,7 @@ const flash = require("connect-flash");
 const app = express();
 
 var cors = require("cors");
-var corsOptions = {
-    origin: "*",
-    optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

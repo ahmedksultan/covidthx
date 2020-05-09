@@ -28,7 +28,7 @@
           <div class="col-md-6 p-3">
                <div class="p-4 {{ ['bg-passion', 'bg-firewatch', 'bg-cherry', 'bg-blush', 'bg-ibizasunset'] | random }} text-primary rounded-lg shadow">
                     {% if post.img %}
-                         <img src="{{ post.img }}" alt="" width="100%" height="auto" class="rounded-sm">
+                         <img src="{{ post.img }}" alt="" width="100%" height="auto" class="rounded-sm" onerror="this.onerror=null;this.src='https://i.imgur.com/LIJiala.jpg';" />
                          <br> <br>
                     {% endif %}
                     <!-- header -->

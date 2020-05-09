@@ -37,22 +37,12 @@ function check() {
                 }
                 if (img.substring(0, 8) != "https://") {
                     alert(
-                        "Hmmm... that image link doesn't look right. Make sure to include https:// and an image extension in your address."
+                        "Hmmm... that image link doesn't look right. Make sure to include https:// in your link."
                     );
                     return false;
                 } else {
-                    axios
-                        .get(img)
-                        .then(function (response) {
-							document.createCardForm.submit();
-                            return true;
-                        })
-                        .catch(function (error) {
-                            alert(
-                                "This doesn't look like a valid link. Try again."
-                            );
-                            return false;
-                        });
+                    document.createCardForm.submit();
+                    return true;
                 }
             }
         });
