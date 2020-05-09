@@ -34,7 +34,6 @@ function checkProfanity() {
                 alert("Your message cannot contain profanity!");
                 return false;
             } else {
-                document.createCardForm.submit();
                 return true;
             }
         });
@@ -44,9 +43,36 @@ function checkImage() {
     event.preventDefault();
     // getting info from img field
     var check = document.createCardForm.img.value;
+    console.log(check)
+    if (!check) {
+        return true;
+    }
     // checking for https://
-    if (check.substring(0, 7) != 'https://' && check != None) {
-        alert("Hmmm... that image link doesn't look right. Try again, and make sure to include https:// and an image extension in your address.");
+    if (check.substring(0, 7) != 'https://') {
+        alert("Hmmm... that image link doesn't look right. Make sure to include https:// and an image extension in your address.");
+        return false;
+    }
+    axios
+        .get(check)
+        .then(function (response) {
+            return true;
+        })
+        .catch(function (error) {
+            alert("This doesn't look like a valid link. Try again.");
+            return false;
+
+        })
+}
+
+function check() {
+    console.log("checkign...");
+    console.log(checkProfanity());
+    console.log(checkImage());
+    if (checkProfanity() && checkImage()) {
+        document.createCardForm.submit();
+        return true;
+    } else {
+        alert("Something went wrong. Try again.");
         return false;
     }
 }
