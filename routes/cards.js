@@ -39,11 +39,15 @@ router.post("/create", function (req, res, next) {
                 img: img,
                 ip: ip,
             });
+
+
             newCard
                 .save()
                 .then((response) => {
-                    //console.log(newCard);
-                    res.redirect("/");
+                
+                  // console.log(newUser)
+
+                  res.redirect("/");
                 })
                 .catch((err) => {
                     console.log(err);
