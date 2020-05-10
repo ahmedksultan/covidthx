@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 nunjucks.configure("views", {
     autoescape: true,
     express: app,
-});
+}); 
 
 // Passport Config
 require("./config/passport")(passport);
@@ -89,3 +89,4 @@ app.use(ipfilter(ips))
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, console.log(`Server started on ${PORT}`));
+
