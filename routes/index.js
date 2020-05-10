@@ -1,3 +1,4 @@
+require("dotenv").config();
 var express = require("express");
 var router = express.Router();
 const Card = require("../models/Card");
@@ -24,6 +25,7 @@ router.get("/", async function (req, res, next) {
                     posts: cards,
                     page: page,
                     pages: Math.ceil(count / perPage),
+                    site_key: process.env.SITE_KEY,
                 });
             });
         });
