@@ -37,15 +37,32 @@ router.post("/create", function (req, res, next) {
                 location: location,
                 message: message,
                 img: img,
+                ip: req.ip,
             });
-            newCard
-                .save()
-                .then((response) => {
-                    res.redirect("/");
+
+            Card.find()
+                .sort({
+                    timestamp: "desc",
                 })
-                .catch((err) => {
-                    console.log(err);
-                    res.status(400).send("Unable to create card");
+                .limit(1)
+                .then(function (card) {
+                    const oldip = card[0].ip;
+                    if (oldip == newCard.ip) {
+                        res.send({
+                            responseError: "You cannot make consecutive posts",
+                        });
+                    } else {
+                        newCard
+                            .save()
+                            .then((response) => {
+                                console.log("created");
+                                res.redirect("/");
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                                res.status(400).send("Unable to create card");
+                            });
+                    }
                 });
         }
     });
