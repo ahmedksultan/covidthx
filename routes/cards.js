@@ -102,14 +102,14 @@ router.post("/heart", function (req, res, next) {
 
     Card.findOne({ _id: id }, function (err, doc) {
         doc.hearts = doc.hearts + 1;
-        doc.save();
-    })
-        .then(() => {
-            res.json({ success: true });
-        })
-        .catch((err) => {
-            res.json({ err: err });
-        });
+        doc.save()
+            .then(() => {
+                res.json({ success: true });
+            })
+            .catch((err) => {
+                res.json({ err: err });
+            });
+    });
 });
 
 module.exports = router;
