@@ -4,6 +4,7 @@ var router = express.Router();
 const request = require("request");
 const { ensureAuthenticated } = require("../config/auth");
 const Card = require("../models/Card");
+const User = require("../models/User");
 
 /* POST create a new card. */
 router.post("/create", function (req, res, next) {
@@ -40,59 +41,64 @@ router.post("/create", function (req, res, next) {
                 ip: req.ip,
             });
 
-            Card.find({
+            User.findOne({
                 ip: req.ip,
-            })
-                .sort({
-                    timestamp: "desc",
-                })
-                .limit(1)
-                .then(function (card) {
-                    if (card.length == 0) {
+            }).then(function (user) {
+                if (!user) {
+                    const newUser = new User({
+                        ip: req.ip,
+                        recent: Date.now(),
+                    });
+                    newUser.save().then((res1) => {
                         newCard
                             .save()
-                            .then((response) => {
-                                console.log("created");
+                            .then((res2) => {
                                 res.redirect("/");
                             })
                             .catch((err) => {
-                                console.log(err);
                                 res.status(400).send("Unable to create card");
                             });
-                    } else {
-                        const old = new Date(card[0].timestamp);
-                        const now = Date.now();
-                        let diff = now - old;
-                        let msec = diff;
-                        let hh = Math.floor(msec / 1000 / 60 / 60);
-                        msec -= hh * 1000 * 60 * 60;
-                        let mm = Math.floor(msec / 1000 / 60);
-                        msec -= mm * 1000 * 60;
-                        let ss = Math.floor(msec / 1000);
-                        msec -= ss * 1000;
-                        console.log("old: " + old);
-                        console.log("now: " + now);
-                        console.log("diff: " + hh + ":" + mm + ":" + ss);
-                        if (hh < 1) {
+                    });
+                } else {
+                    const recent = user.recent;
+                    const now = Date.now();
+                    let diff = now - recent;
+                    let msec = diff;
+                    let hh = Math.floor(msec / 1000 / 60 / 60);
+                    msec -= hh * 1000 * 60 * 60;
+                    let mm = Math.floor(msec / 1000 / 60);
+                    msec -= mm * 1000 * 60;
+                    let ss = Math.floor(msec / 1000);
+                    msec -= ss * 1000;
+                    console.log("recent: " + recent);
+                    console.log("now: " + now);
+                    console.log("diff: " + hh + ":" + mm + ":" + ss);
+                    if (hh < 1) {
+                        user.recent = Date.now();
+                        user.requests = user.requests + 1;
+                        user.save().then((response) => {
                             res.send({
                                 responseError: "You cannot post that often",
                             });
-                        } else {
+                        });
+                    } else {
+                        user.recent = Date.now();
+                        user.requests = user.requests + 1;
+                        user.save().then((res1) => {
                             newCard
                                 .save()
-                                .then((response) => {
-                                    console.log("created");
+                                .then((res2) => {
                                     res.redirect("/");
                                 })
                                 .catch((err) => {
-                                    console.log(err);
                                     res.status(400).send(
                                         "Unable to create card"
                                     );
                                 });
-                        }
+                        });
                     }
-                });
+                }
+            });
         }
     });
 });
