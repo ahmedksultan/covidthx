@@ -30,20 +30,8 @@ function check() {
                 alert("Your message cannot contain profanity");
                 return false;
             } else {
-                var img = document.createCardForm.img.value;
-                if (!img) {
-                    document.createCardForm.submit();
-                    return true;
-                }
-                if (img.substring(0, 8) != "https://") {
-                    alert(
-                        "Hmmm... that image link doesn't look right. Make sure to include https:// in your link."
-                    );
-                    return false;
-                } else {
-                    document.createCardForm.submit();
-                    return true;
-                }
+                document.createCardForm.submit();
+                return true;
             }
         });
 }
