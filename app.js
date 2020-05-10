@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
+const ipfilter = require('express-ipfilter').IpFilter
 
 const app = express();
 
@@ -41,6 +42,28 @@ app.use(
     })
 );
 
+//Blacklist the following IPs
+
+const ips = [] // put the IP in '' ; ex: '127.0.0.1'
+
+
+// Throw error to blacklisted IPs
+if (app.get('env') === 'development') {
+  app.use((err, req, res, _next)=> {
+    console.log('Error handler', err)
+    if (err instanceof IpDeniedError){
+      res.status(401)
+    } else {
+      res.status(err.status || 500 )
+    }
+
+    res.render('error', {
+    message: 'You are not allowed.',
+    error: err
+  })
+})
+}
+
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -60,6 +83,8 @@ app.use(function (req, res, next) {
 });
 
 app.get;
+
+app.use(ipfilter(ips))
 
 const PORT = process.env.PORT || 5000;
 
