@@ -31,10 +31,6 @@ const CardSchema = new mongoose.Schema({
     img: {
         type: String,
     },
-    ip: {
-        type: String,
-        required: true,
-    },
 });
 
 const Card = mongoose.model("Card", CardSchema);
