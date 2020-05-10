@@ -8,8 +8,8 @@ const UserSchema = new mongoose.Schema({
     ipCount: {
       type: String,
       required: true,
-    }
-    expirationTime{
+    },
+    expirationTime: {
       type: Date,
       required: true,
     }
