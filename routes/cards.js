@@ -33,20 +33,22 @@ router.post("/create", function (req, res, next) {
         } else {
             const { name, location, message, img } = req.body;
 
+            const ip = req.clientIp;
+
             const newCard = new Card({
                 name: name,
                 location: location,
                 message: message,
                 img: img,
-                ip: req.ip,
+                ip: ip,
             });
 
             User.findOne({
-                ip: req.ip,
+                ip: req.clientIp,
             }).then(function (user) {
                 if (!user) {
                     const newUser = new User({
-                        ip: req.ip,
+                        ip: ip,
                         recent: Date.now(),
                     });
                     newUser.save().then((res1) => {
@@ -70,9 +72,6 @@ router.post("/create", function (req, res, next) {
                     msec -= mm * 1000 * 60;
                     let ss = Math.floor(msec / 1000);
                     msec -= ss * 1000;
-                    console.log("recent: " + recent);
-                    console.log("now: " + now);
-                    console.log("diff: " + hh + ":" + mm + ":" + ss);
                     if (hh < 1) {
                         user.recent = Date.now();
                         user.requests = user.requests + 1;

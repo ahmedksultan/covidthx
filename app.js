@@ -12,6 +12,10 @@ const app = express();
 var cors = require("cors");
 app.use(cors());
 
+
+var requestIp = require('request-ip');
+app.use(requestIp.mw())
+
 // Configure Body-Parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
