@@ -29,25 +29,25 @@ router.post("/create", function (req, res, next) {
 
         if (body.success !== undefined && !body.success) {
             return res.json({ responseError: "Failed captcha verification" });
-        }
+        } else {
+            const { name, location, message, img } = req.body;
 
-        const { name, location, message, img } = req.body;
-
-        const newCard = new Card({
-            name: name,
-            location: location,
-            message: message,
-            img: img,
-        });
-        newCard
-            .save()
-            .then((response) => {
-                res.redirect("/");
-            })
-            .catch((err) => {
-                console.log(err);
-                res.status(400).send("Unable to create card");
+            const newCard = new Card({
+                name: name,
+                location: location,
+                message: message,
+                img: img,
             });
+            newCard
+                .save()
+                .then((response) => {
+                    res.redirect("/");
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.status(400).send("Unable to create card");
+                });
+        }
     });
 });
 
