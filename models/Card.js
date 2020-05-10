@@ -9,6 +9,10 @@ const CardSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    ip: {
+      type: String,
+      required: true,
+    },
     timestamp: {
         type: Date,
         default: Date.now,

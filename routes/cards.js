@@ -30,17 +30,19 @@ router.post("/create", function (req, res, next) {
         if (body.success !== undefined && !body.success) {
             return res.json({ responseError: "Failed captcha verification" });
         } else {
-            const { name, location, message, img } = req.body;
+            const { name, location, message, img, ip } = req.body;
 
             const newCard = new Card({
                 name: name,
                 location: location,
                 message: message,
                 img: img,
+                ip: ip,
             });
             newCard
                 .save()
                 .then((response) => {
+                    //console.log(newCard);
                     res.redirect("/");
                 })
                 .catch((err) => {

@@ -8,6 +8,7 @@ function updateLocation() {
             console.log(response.city + "!");
             document.getElementById("location").value =
                 response.city + ", " + response.region_code;
+            document.getElementById("ip").value = response.ip;
         }
     };
 
@@ -30,6 +31,22 @@ function check() {
                 alert("Your message cannot contain profanity");
                 return false;
             } else {
+
+
+                  var json = "https://freegeoip.app/json/";
+                  const xhr = new XMLHttpRequest();
+
+                  xhr.onreadystatechange = function () {
+                      if (this.readyState == 4 && this.status == 200) {
+                          var response = JSON.parse(this.responseText);
+                          // console.log(response.city + "!");
+                          document.createCardForm.ip.value = response.ip;
+                      }
+                  };
+
+                  xhr.open("GET", json, true);
+                  xhr.send();
+
                 document.createCardForm.submit();
                 return true;
             }

@@ -43,6 +43,7 @@
                <form name="createCardForm" id="createCardForm" action="/cards/create" method="POST" onSubmit="return check()">
                     <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
                     <input type="hidden" name="action" value="validate_captcha">
+                    <input type="hidden" id="ip" name="ip">
                     <div class="modal-body">
                          <div class="form-group">
                               <label for="Input1">Name</label>
