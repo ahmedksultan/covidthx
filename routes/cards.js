@@ -4,6 +4,7 @@ var router = express.Router();
 const request = require("request");
 const { ensureAuthenticated } = require("../config/auth");
 const Card = require("../models/Card");
+const User = require("../models/User");
 
 /* POST create a new card. */
 router.post("/create", function (req, res, next) {
@@ -32,21 +33,71 @@ router.post("/create", function (req, res, next) {
         } else {
             const { name, location, message, img } = req.body;
 
+            const ip = req.clientIp;
+
             const newCard = new Card({
                 name: name,
                 location: location,
                 message: message,
                 img: img,
+                ip: ip,
             });
-            newCard
-                .save()
-                .then((response) => {
-                    res.redirect("/");
-                })
-                .catch((err) => {
-                    console.log(err);
-                    res.status(400).send("Unable to create card");
-                });
+
+            User.findOne({
+                ip: req.clientIp,
+            }).then(function (user) {
+                if (!user) {
+                    const newUser = new User({
+                        ip: ip,
+                        recent: Date.now(),
+                    });
+                    newUser.save().then((res1) => {
+                        newCard
+                            .save()
+                            .then((res2) => {
+                                res.redirect("/");
+                            })
+                            .catch((err) => {
+                                res.status(400).send("Unable to create card");
+                            });
+                    });
+                } else {
+                    const recent = user.recent;
+                    const now = Date.now();
+                    let diff = now - recent;
+                    let msec = diff;
+                    let hh = Math.floor(msec / 1000 / 60 / 60);
+                    msec -= hh * 1000 * 60 * 60;
+                    let mm = Math.floor(msec / 1000 / 60);
+                    msec -= mm * 1000 * 60;
+                    let ss = Math.floor(msec / 1000);
+                    msec -= ss * 1000;
+                    if (hh < 1) {
+                        user.recent = Date.now();
+                        user.requests = user.requests + 1;
+                        user.save().then((response) => {
+                            res.send({
+                                responseError: "You cannot post that often",
+                            });
+                        });
+                    } else {
+                        user.recent = Date.now();
+                        user.requests = user.requests + 1;
+                        user.save().then((res1) => {
+                            newCard
+                                .save()
+                                .then((res2) => {
+                                    res.redirect("/");
+                                })
+                                .catch((err) => {
+                                    res.status(400).send(
+                                        "Unable to create card"
+                                    );
+                                });
+                        });
+                    }
+                }
+            });
         }
     });
 });
